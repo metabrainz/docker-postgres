@@ -1,0 +1,9 @@
+#!/bin/sh
+
+set -e
+
+{{- range service "postgres-slave"}}
+rsync -a "$1" rsync://postgres@{{.Address}}:/var/tmp/pg_archive/$2
+{{- end}}
+
+exit 0

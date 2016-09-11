@@ -1,0 +1,12 @@
+lock file = /var/run/rsync.lock
+log file = /var/log/rsyncd.log
+pid file = /var/run/rsyncd.pid
+
+[pg_archive]
+    path = /var/tmp/pg_archive
+    comment = Postgres WAL archives
+    uid = postgres
+    gid = postgres
+    read only = no
+    auth users = postgres
+    hosts allow = {{with index (service "postgres-master") 0}}{{.Address}}/255.255.255.255{{end}}

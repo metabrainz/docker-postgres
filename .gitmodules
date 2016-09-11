@@ -1,0 +1,3 @@
+[submodule "docker-helpers"]
+	path = docker-helpers
+	url = https://github.com/metabrainz/docker-helpers

@@ -1,0 +1,5 @@
+#!/bin/sh
+
+sv start consul-template || exit 1
+
+exec rsync --daemon
