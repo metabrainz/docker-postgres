@@ -9,4 +9,6 @@ pid file = /var/run/rsyncd.pid
     gid = postgres
     read only = no
     auth users = postgres
+    {{- if service "postgres-master"}}
     hosts allow = {{with index (service "postgres-master") 0}}{{.Address}}/255.255.255.255{{end}}
+    {{- end}}
