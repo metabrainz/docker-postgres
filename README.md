@@ -1,6 +1,6 @@
 # docker-postgres
 
-MetaBrainz postgres container.
+MetaBrainz postgres + pgbouncer container.
 
 ## Setup
 
