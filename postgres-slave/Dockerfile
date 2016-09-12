@@ -1,4 +1,4 @@
-FROM postgres-base
+FROM metabrainz/postgres-base
 
 RUN mkdir -p /var/tmp/pg_archive && \
     chown -R postgres:postgres /var/tmp/pg_archive

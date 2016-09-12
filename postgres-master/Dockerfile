@@ -1,4 +1,4 @@
-FROM postgres-base
+FROM metabrainz/postgres-base
 
 RUN cd /tmp && \
     git clone https://github.com/metabrainz/dbmirror.git && \
