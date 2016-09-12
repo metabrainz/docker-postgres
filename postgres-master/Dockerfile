@@ -9,6 +9,8 @@ RUN cd /tmp && \
     cd / && \
     rm -rf /tmp/dbmirror
 
+RUN apk del .build-deps
+
 COPY postgres-master/consul-template.conf \
     postgres-master/pg_archive_command.sh.ctmpl \
     /etc/

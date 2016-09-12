@@ -1,8 +1,9 @@
-FROM ubuntu:16.04
+FROM alpine:3.4
 
 COPY docker-helpers/install_consul_template.sh \
     docker-helpers/install_runit.sh \
     /usr/local/bin/
+
 RUN install_consul_template.sh && \
     rm -f \
         /usr/local/bin/install_consul_template.sh \
@@ -11,35 +12,24 @@ RUN install_consul_template.sh && \
 # Pgbouncer and postgres are set up in the same container, because there is a
 # 1:1 relationship between them which can't easily scale with swarm otherwise.
 
-# https://github.com/docker-library/postgres/blob/04b1d36/9.5/Dockerfile#L4
-RUN groupadd -r postgres --gid=999 && \
-    useradd -r -g postgres --uid=999 postgres
-
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
+RUN apk add --no-cache \
+        c-ares \
+        icu \
+        libev \
+        libevent \
+        openssl \
+        rsync && \
+    apk add --no-cache --virtual .build-deps \
+        autoconf \
         automake \
-        build-essential \
         ca-certificates \
+        gcc \
         git \
-        libc-ares-dev \
-        libc-ares2 \
-        libev-dev \
-        libev4 \
-        libevent-2.0-5 \
-        libevent-dev \
-        libicu-dev \
-        libssl-dev \
-        libssl1.0.0 \
         libtool \
-        locales \
-        pkg-config \
-        rsync \
-        vim && \
-    rm -rf /var/lib/apt/lists/*
-
-# https://github.com/docker-library/postgres/blob/04b1d36/9.5/Dockerfile#L21
-RUN localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
-ENV LANG en_US.utf8
+        m4 \
+        make \
+        musl-dev \
+        pkgconfig
 
 ###############
 ## pgbouncer ##
@@ -59,7 +49,12 @@ ENV LANG en_US.utf8
 # https://hub.docker.com/r/mbentley/ubuntu-pgbouncer/~/dockerfile/
 # https://github.com/mbentley/dockerfiles/tree/master/ubuntu/pgbouncer
 
-RUN cd /tmp && \
+RUN apk add --no-cache --virtual .pgbouncer-build-deps \
+        c-ares-dev \
+        libev-dev \
+        libevent-dev \
+        openssl-dev && \
+    cd /tmp && \
     git clone https://github.com/pgbouncer/pgbouncer.git && \
     cd pgbouncer && \
     git checkout pgbouncer_1_7_2 && \
@@ -70,45 +65,34 @@ RUN cd /tmp && \
     make && \
     make install && \
     cd / && \
-    rm -rf /tmp/pgbouncer
-
-RUN mkdir -p /etc/pgbouncer && \
-    mkdir -p /var/run/postgresql && \
-    touch /var/log/postgresql && \
-    chown -R postgres:postgres /var/log/postgresql && \
-    chown -R postgres:postgres /var/run/postgresql
+    rm -rf /tmp/pgbouncer && \
+    apk del .pgbouncer-build-deps
 
 ##############
 ## postgres ##
 ##############
 
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends postgresql-common && \
-    # https://github.com/docker-library/postgres/blob/04b1d36/9.5/Dockerfile#L37
-    sed -ri 's/#(create_main_cluster) .*$/\1 = false/' /etc/postgresql-common/createcluster.conf && \
-    apt-get install -y --no-install-recommends \
-        postgresql-9.5 \
-        postgresql-contrib-9.5 \
-        postgresql-server-dev-9.5 && \
-    rm -rf /var/lib/apt/lists/*
+RUN apk add --no-cache postgresql postgresql-contrib && \
+    apk add --no-cache --virtual .build-deps postgresql-dev
 
 ENV PGDATA /var/lib/postgresql/data
-RUN mkdir -p $PGDATA && \
-    chown -R postgres:postgres $PGDATA && \
-    pg_createcluster -d $PGDATA 9.5 main
+
+RUN chpst -u postgres:postgres initdb --encoding utf8 --locale C $PGDATA
 
 ################
 ## extensions ##
 ################
 
-RUN cd /tmp && \
+RUN apk add --no-cache --virtual .collate-build-deps icu-dev && \
+    cd /tmp && \
     git clone https://github.com/metabrainz/postgresql-musicbrainz-collate.git && \
     cd postgresql-musicbrainz-collate && \
     git reset --hard 958142e03c5d035bb215a4296fd09bcf388b833a && \
     make && \
     make install && \
     cd / && \
-    rm -rf /tmp/postgresql-musicbrainz-collate
+    rm -rf /tmp/postgresql-musicbrainz-collate && \
+    apk del .collate-build-deps
 
 RUN cd /tmp && \
     git clone https://github.com/metabrainz/postgresql-musicbrainz-unaccent.git && \
@@ -119,14 +103,17 @@ RUN cd /tmp && \
     cd / && \
     rm -rf /tmp/postgresql-musicbrainz-unaccent
 
+COPY postgres-base/timeval.patch /tmp/
+
 RUN cd /tmp && \
     git clone https://github.com/omniti-labs/pg_amqp.git && \
     cd pg_amqp && \
     git reset --hard 1290d7cfd4c7ba1e2d7a502708dcfeb53b308f3b && \
+    git apply /tmp/timeval.patch && \
     make && \
     make install && \
     cd / && \
-    rm -rf /tmp/pg_amqp
+    rm -rf /tmp/pg_amqp /tmp/timeval.patch
 
 ###################
 ## configuration ##

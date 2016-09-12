@@ -1,5 +1,7 @@
 FROM metabrainz/postgres-base
 
+RUN apk del .build-deps
+
 RUN mkdir -p /var/tmp/pg_archive && \
     chown -R postgres:postgres /var/tmp/pg_archive
 
