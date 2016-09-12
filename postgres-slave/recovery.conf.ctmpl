@@ -1,7 +1,7 @@
 archive_cleanup_command = 'pg_archivecleanup -d /var/tmp/pg_archive %r 2>>/var/lib/postgresql/data/cleanup.log'
 {{- if service "postgres-master"}}
 {{- with index (service "postgres-master") 0}}
-primary_conninfo = 'host={{.Address}} port={{.Port} dbname=musicbrainz_db user=musicbrainz_replication'
+primary_conninfo = 'host={{.Address}} port={{.Port} dbname=musicbrainz_db user=replication'
 {{- end}}
 {{- end}}
 restore_command = 'cp /var/tmp/pg_archive/%f %p'

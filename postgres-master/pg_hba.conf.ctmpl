@@ -15,5 +15,5 @@ host musicbrainz_db musicbrainz {{.Address}}/32 trust
 {{- end}}
 {{- range service "postgres-slave"}}
 host all all {{.Address}}/32 trust
-host replication musicbrainz_replication {{.Address}}/32 trust
+host replication replication {{.Address}}/32 trust
 {{- end}}
