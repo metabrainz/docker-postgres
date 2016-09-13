@@ -1,0 +1,49 @@
+version: '2'
+
+services:
+  haproxy-pgbouncer-readonly:
+    environment:
+      - "constraint:class==app"
+      - SERVICE_6899_NAME=haproxy-pgbouncer-readonly
+      - SERVICE_6899_TAGS=beta,prod
+    image: metabrainz/haproxy-pgbouncer-readonly
+    restart: always
+
+  postgres-master:
+    environment:
+      - "constraint:class==db-master"
+      - SERVICE_5432_NAME=postgres-master
+      - SERVICE_6899_NAME=pgbouncer-master
+      - SERVICE_TAGS=beta,prod
+    ports:
+      - "5432"
+      - "6899"
+    image: metabrainz/postgres-master
+    restart: always
+    volumes:
+      - postgres-master-data:/var/lib/postgresql/data
+
+  postgres-slave:
+    depends_on:
+      - postgres-master
+    environment:
+      - "constraint:class==db-slave"
+      - SERVICE_5432_NAME=postgres-slave
+      - SERVICE_6899_NAME=pgbouncer-slave
+      - SERVICE_TAGS=beta,prod
+    ports:
+      - "5432"
+      - "6899"
+    image: metabrainz/postgres-slave
+    restart: always
+    volumes:
+      - postgres-slave-archives:/var/tmp/pg_archive
+      - postgres-slave-data:/var/lib/postgresql/data
+
+volumes:
+  postgres-master-data:
+    driver: local
+  postgres-slave-archives:
+    driver: local
+  postgres-slave-data:
+    driver: local
