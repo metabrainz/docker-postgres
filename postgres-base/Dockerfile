@@ -103,7 +103,7 @@ RUN cd /tmp && \
     cd / && \
     rm -rf /tmp/postgresql-musicbrainz-unaccent
 
-COPY postgres-base/timeval.patch /tmp/
+COPY timeval.patch /tmp/
 
 RUN cd /tmp && \
     git clone https://github.com/omniti-labs/pg_amqp.git && \
@@ -119,9 +119,9 @@ RUN cd /tmp && \
 ## configuration ##
 ###################
 
-COPY postgres-base/pgbouncer.ini postgres-base/userlist.txt /etc/pgbouncer/
-COPY postgres-base/pgbouncer.service /etc/sv/pgbouncer/run
-COPY postgres-base/postgres.service /etc/sv/postgres/run
+COPY pgbouncer.ini userlist.txt /etc/pgbouncer/
+COPY pgbouncer.service /etc/sv/pgbouncer/run
+COPY postgres.service /etc/sv/postgres/run
 RUN chmod 755 /etc/sv/pgbouncer/run /etc/sv/postgres/run && \
     ln -s /etc/sv/pgbouncer /etc/service/ && \
     ln -s /etc/sv/postgres /etc/service/

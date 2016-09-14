@@ -3,7 +3,7 @@
 all: build
 
 build:
-	docker build -t metabrainz/postgres-base -f postgres-base/Dockerfile .
-	docker build -t metabrainz/postgres-master -f postgres-master/Dockerfile .
-	docker build -t metabrainz/postgres-slave -f postgres-slave/Dockerfile .
-	docker build -t metabrainz/haproxy-pgbouncer-readonly -f haproxy-pgbouncer-readonly/Dockerfile .
+	docker build -t metabrainz/postgres-base postgres-base/
+	docker build -t metabrainz/postgres-master postgres-master/
+	docker build -t metabrainz/postgres-slave postgres-slave/
+	docker build -t metabrainz/haproxy-pgbouncer-readonly haproxy-pgbouncer-readonly/

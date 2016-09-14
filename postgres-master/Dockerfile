@@ -11,9 +11,5 @@ RUN cd /tmp && \
 
 RUN apk del .build-deps
 
-COPY postgres-master/consul-template.conf \
-    postgres-master/pg_archive_command.sh.ctmpl \
-    /etc/
-COPY postgres-master/pg_hba.conf.ctmpl \
-    postgres-master/postgresql.conf.ctmpl \
-    /etc/postgresql/
+COPY consul-template.conf pg_archive_command.sh.ctmpl /etc/
+COPY pg_hba.conf.ctmpl postgresql.conf.ctmpl /etc/postgresql/
