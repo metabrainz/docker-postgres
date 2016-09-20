@@ -3,7 +3,7 @@ version: '2'
 services:
   haproxy-pgbouncer-readonly:
     environment:
-      - "constraint:class==app"
+      - "constraint:type==app"
       - SERVICE_6899_NAME=haproxy-pgbouncer-readonly
       - SERVICE_6899_TAGS=beta,prod
     image: metabrainz/haproxy-pgbouncer-readonly
@@ -11,7 +11,8 @@ services:
 
   postgres-master:
     environment:
-      - "constraint:class==db-master"
+      - "constraint:type==db"
+      - "constraint:subtype==master"
       - SERVICE_5432_NAME=postgres-master
       - SERVICE_6899_NAME=pgbouncer-master
       - SERVICE_TAGS=beta,prod
@@ -27,7 +28,8 @@ services:
     depends_on:
       - postgres-master
     environment:
-      - "constraint:class==db-slave"
+      - "constraint:type==db"
+      - "constraint:subtype==slave"
       - SERVICE_5432_NAME=postgres-slave
       - SERVICE_6899_NAME=pgbouncer-slave
       - SERVICE_TAGS=beta,prod
