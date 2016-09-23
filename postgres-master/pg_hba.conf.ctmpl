@@ -9,6 +9,7 @@ host musicbrainz_db musicbrainz {{.Address}}/32 trust
 {{- end}}
 {{- range service "musicbrainz-server"}}
 host musicbrainz_db musicbrainz {{.Address}}/32 trust
+host template1 postgres {{.Address}}/32 trust
 {{- end}}
 {{- range service "musicbrainz-server-cron"}}
 host musicbrainz_db musicbrainz {{.Address}}/32 trust
