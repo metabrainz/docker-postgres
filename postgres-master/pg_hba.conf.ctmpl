@@ -7,6 +7,12 @@ host musicbrainz_db musicbrainz {{.Address}}/32 trust
 {{- range service "caa-redirect"}}
 host musicbrainz_db musicbrainz {{.Address}}/32 trust
 {{- end}}
+{{- range service "critiquebrainz"}}
+host critiquebrainz_db critiquebrainz {{.Address}}/32 trust
+host critiquebrainz_db postgres {{.Address}}/32 trust
+host musicbrainz_db critiquebrainz {{.Address}}/32 trust
+host template1 postgres {{.Address}}/32 trust
+{{- end}}
 {{- range service "musicbrainz-server"}}
 host musicbrainz_db musicbrainz {{.Address}}/32 trust
 host musicbrainz_db postgres {{.Address}}/32 trust
