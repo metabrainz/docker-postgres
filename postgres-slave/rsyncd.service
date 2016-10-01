@@ -2,4 +2,4 @@
 
 sv start consul-template || exit 1
 
-exec rsync --daemon
+exec rsync --daemon --no-detach
