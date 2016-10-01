@@ -17,3 +17,5 @@ RUN chmod 755 /etc/sv/haproxy/run && \
     ln -s /etc/sv/haproxy /etc/service/
 
 ENTRYPOINT ["/usr/local/bin/runsvinit"]
+
+EXPOSE 6899

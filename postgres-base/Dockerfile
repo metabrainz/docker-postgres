@@ -129,3 +129,5 @@ RUN chmod 755 /etc/sv/pgbouncer/run /etc/sv/postgres/run && \
 VOLUME ["/var/lib/postgresql/data"]
 
 ENTRYPOINT ["/usr/local/bin/runsvinit"]
+
+EXPOSE 5432 6899
