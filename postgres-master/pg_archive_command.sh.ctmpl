@@ -3,7 +3,12 @@
 set -e
 
 {{- range service "postgres-slave"}}
-rsync --archive --ignore-existing "$1" rsync://postgres@{{.Address}}:/pg_archive/$2
+rsync \
+    --archive \
+    --ignore-existing \
+    --password-file=/etc/rsync_password_file \
+    "$1" \
+    rsync://postgres@{{.Address}}:/pg_archive/$2
 {{- end}}
 
 exit 0

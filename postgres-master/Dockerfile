@@ -11,5 +11,5 @@ RUN cd /tmp && \
 
 RUN apk del .build-deps
 
-COPY consul-template.conf pg_archive_command.sh.ctmpl /etc/
+COPY consul-template.conf pg_archive_command.sh.ctmpl rsync_password_file.ctmpl /etc/
 COPY pg_hba.conf.ctmpl postgresql.conf.ctmpl /etc/postgresql/
