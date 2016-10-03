@@ -4,7 +4,6 @@ set -e
 
 {{- range service "postgres-slave"}}
 rsync \
-    --archive \
     --ignore-existing \
     --password-file=/etc/rsync_password_file \
     "$1" \
