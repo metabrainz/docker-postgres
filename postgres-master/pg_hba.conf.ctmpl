@@ -25,3 +25,6 @@ host musicbrainz_db musicbrainz {{.Address}}/32 trust
 host all all {{.Address}}/32 trust
 host replication replication {{.Address}}/32 trust
 {{- end}}
+{{- range service "search-indexer-rsync"}}
+host musicbrainz_db musicbrainz_ro {{.Address}}/32 trust
+{{- end}}
