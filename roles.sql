@@ -1,0 +1,7 @@
+\set ON_ERROR_STOP 1
+BEGIN;
+
+CREATE ROLE replication WITH REPLICATION;
+CREATE ROLE musicbrainz_ro;
+
+COMMIT;

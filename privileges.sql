@@ -1,0 +1,9 @@
+\set ON_ERROR_STOP 1
+BEGIN;
+
+REVOKE ALL PRIVILEGES ON ALL TABLES IN SCHEMA musicbrainz FROM musicbrainz_ro;
+REVOKE ALL PRIVILEGES ON SCHEMA musicbrainz FROM musicbrainz_ro;
+
+GRANT SELECT ON ALL TABLES IN SCHEMA musicbrainz TO musicbrainz_ro;
+
+COMMIT;
