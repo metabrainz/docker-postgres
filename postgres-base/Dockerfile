@@ -1,13 +1,4 @@
-FROM alpine:3.4
-
-COPY docker-helpers/install_consul_template.sh \
-    docker-helpers/install_runit.sh \
-    /usr/local/bin/
-
-RUN install_consul_template.sh && \
-    rm -f \
-        /usr/local/bin/install_consul_template.sh \
-        /usr/local/bin/install_runit.sh
+FROM metabrainz/consul-template-base
 
 # Pgbouncer and postgres are set up in the same container, because there is a
 # 1:1 relationship between them which can't easily scale with swarm otherwise.

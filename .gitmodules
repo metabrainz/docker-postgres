@@ -1,6 +1,0 @@
-[submodule "haproxy-pgbouncer-readonly/docker-helpers"]
-	path = haproxy-pgbouncer-readonly/docker-helpers
-	url = https://github.com/metabrainz/docker-helpers
-[submodule "postgres-base/docker-helpers"]
-	path = postgres-base/docker-helpers
-	url = https://github.com/metabrainz/docker-helpers

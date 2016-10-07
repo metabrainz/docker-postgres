@@ -1,13 +1,6 @@
-FROM haproxy:1.6.9-alpine
+FROM metabrainz/consul-template-base
 
-COPY docker-helpers/install_consul_template.sh \
-    docker-helpers/install_runit.sh \
-    /usr/local/bin/
-
-RUN install_consul_template.sh && \
-    rm -f \
-        /usr/local/bin/install_consul_template.sh \
-        /usr/local/bin/install_runit.sh
+RUN apk add --no-cache haproxy
 
 COPY consul-template.conf /etc/
 COPY haproxy.cfg.ctmpl /usr/local/etc/haproxy/
