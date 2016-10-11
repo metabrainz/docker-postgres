@@ -9,5 +9,3 @@ COPY haproxy.cfg.ctmpl /usr/local/etc/haproxy/
 COPY haproxy.service /etc/service/haproxy/run
 
 RUN chmod 755 /etc/service/haproxy/run
-
-EXPOSE 6899

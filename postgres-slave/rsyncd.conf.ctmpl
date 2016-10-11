@@ -1,6 +1,7 @@
 lock file = /var/run/rsync.lock
 log file = /var/log/rsyncd.log
 pid file = /var/run/rsyncd.pid
+port = {{or (env "RSYNCD_PORT") "873"}}
 
 [pg_archive]
     path = /var/tmp/pg_archive

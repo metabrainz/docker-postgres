@@ -11,4 +11,5 @@ exec chpst -u postgres:postgres \
     /usr/lib/postgresql/9.5/bin/postgres \
         -D /var/lib/postgresql/data \
         -c config_file=/etc/postgresql/postgresql.conf \
-        -c hba_file=/etc/postgresql/pg_hba.conf
+        -c hba_file=/etc/postgresql/pg_hba.conf \
+        -p ${POSTGRES_PORT:-5432}

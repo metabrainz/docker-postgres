@@ -143,11 +143,9 @@ RUN apt-get purge -y $BUILD_DEPS && \
 ## configuration ##
 ###################
 
-COPY pgbouncer.ini userlist.txt /etc/pgbouncer/
+COPY pgbouncer.ini.ctmpl userlist.txt /etc/pgbouncer/
 COPY pgbouncer.service /etc/service/pgbouncer/run
 COPY postgres.service /etc/service/postgres/run
 RUN chmod 755 /etc/service/pgbouncer/run /etc/service/postgres/run
 
 VOLUME ["/var/lib/postgresql/data"]
-
-EXPOSE 5432 6899

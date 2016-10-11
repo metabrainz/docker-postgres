@@ -1,6 +1,6 @@
 listen pgbouncer-readonly
     mode tcp
-    bind *:6899
+    bind *:{{or (env "PGBOUNCER_READONLY_PORT") "6899"}}
     timeout connect 10s
     timeout client 1m
     timeout server 1m

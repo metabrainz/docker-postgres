@@ -4,7 +4,7 @@ musicbrainz_db = host=127.0.0.1 port=5432 dbname=musicbrainz_db
 [pgbouncer]
 pidfile=/tmp/pgbouncer.pid
 listen_addr=*
-listen_port=6899
+listen_port={{or (env "PGBOUNCER_PORT") "6899"}}
 user=postgres
 auth_file=/etc/pgbouncer/userlist.txt
 listen_backlog=256
