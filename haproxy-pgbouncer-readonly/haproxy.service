@@ -2,7 +2,7 @@
 
 sv start consul-template || exit 1
 
-source /etc/consul_template_helpers.sh
+. /etc/consul_template_helpers.sh
 
 wait_for_file '/usr/local/etc/haproxy/haproxy.cfg'
 
