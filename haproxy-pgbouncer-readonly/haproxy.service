@@ -1,9 +1,0 @@
-#!/bin/sh
-
-sv start consul-template || exit 1
-
-. /etc/consul_template_helpers.sh
-
-wait_for_file '/usr/local/etc/haproxy/haproxy.cfg'
-
-exec /docker-entrypoint.sh haproxy -f /usr/local/etc/haproxy/haproxy.cfg

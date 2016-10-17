@@ -2,7 +2,6 @@
 
 MetaBrainz postgres + pgbouncer container.
 
-Running `make` produces three images:
- * `metabrainz/haproxy-pgbouncer-readonly`
+Running `make` produces two images:
  * `metabrainz/postgres-master`
  * `metabrainz/postgres-slave`

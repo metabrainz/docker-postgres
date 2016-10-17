@@ -1,14 +1,6 @@
 version: '2'
 
 services:
-  haproxy-pgbouncer-readonly:
-    environment:
-      - "constraint:type==app"
-      - SERVICE_6899_NAME=haproxy-pgbouncer-readonly
-      - SERVICE_6899_TAGS=beta,prod
-    image: metabrainz/haproxy-pgbouncer-readonly
-    restart: always
-
   postgres-master:
     environment:
       - "constraint:type==db"
