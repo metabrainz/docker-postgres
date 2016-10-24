@@ -85,6 +85,7 @@ RUN mkdir -p $PGDATA && \
     chown -R postgres:postgres $PGDATA && \
     chpst -u postgres:postgres \
         /usr/lib/postgresql/9.5/bin/initdb \
+            --data-checksums \
             --encoding utf8 \
             --locale en_US.UTF8 \
             $PGDATA
