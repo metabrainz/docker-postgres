@@ -88,6 +88,7 @@ RUN mkdir -p $PGDATA && \
             --data-checksums \
             --encoding utf8 \
             --locale en_US.UTF8 \
+            --username postgres \
             $PGDATA
 
 ################
