@@ -3,5 +3,10 @@ BEGIN;
 
 CREATE ROLE replication WITH REPLICATION;
 CREATE ROLE musicbrainz_ro;
+CREATE USER metabrainz WITH PASSWORD 'metabrainz';
+CREATE USER caa_redirect WITH PASSWORD 'caa_redirect';
+CREATE USER critiquebrainz WITH PASSWORD 'critiquebrainz';
+CREATE USER mbspotify WITH PASSWORD 'mbspotify';
+CREATE USER sentry WITH PASSWORD 'sentry';
 
 COMMIT;
