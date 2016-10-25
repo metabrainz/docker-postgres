@@ -2,7 +2,7 @@
 
 set -e
 
-{{- range service "rsyncd-pgbouncer-slave"}}
+{{- range service "rsyncd-postgres-slave"}}
 rsync \
     --ignore-existing \
     --password-file=/etc/rsync_password_file \
