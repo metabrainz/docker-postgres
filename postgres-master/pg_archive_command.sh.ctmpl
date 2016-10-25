@@ -2,12 +2,12 @@
 
 set -e
 
-{{- range service "postgres-slave"}}
+{{- range service "rsyncd-pgbouncer-slave"}}
 rsync \
     --ignore-existing \
     --password-file=/etc/rsync_password_file \
     "$1" \
-    rsync://postgres@{{.Address}}:/pg_archive/$2
+    rsync://postgres@{{.Address}}:{{.Port}}/pg_archive/$2
 {{- end}}
 
 exit 0
