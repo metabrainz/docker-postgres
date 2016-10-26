@@ -9,8 +9,7 @@ RUN mkdir -p /var/tmp/pg_archive && \
     chown -R postgres:postgres /var/tmp/pg_archive
 
 COPY consul-template.conf rsyncd.secrets.ctmpl rsyncd.conf /etc/
-COPY pg_hba.conf postgresql.conf.ctmpl /etc/postgresql/
-COPY recovery.conf.ctmpl /var/lib/postgresql/data/
+COPY pg_hba.conf postgresql.conf.ctmpl recovery.conf.ctmpl /etc/postgresql/
 COPY rsyncd.service /etc/service/rsyncd/run
 
 VOLUME ["/var/tmp/pg_archive"]
