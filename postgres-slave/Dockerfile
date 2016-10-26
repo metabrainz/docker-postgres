@@ -10,6 +10,7 @@ RUN mkdir -p /var/tmp/pg_archive && \
 
 COPY consul-template.conf rsyncd.secrets.ctmpl rsyncd.conf /etc/
 COPY pg_hba.conf postgresql.conf.ctmpl recovery.conf.ctmpl /etc/postgresql/
+COPY pg_restore_command.sh /usr/local/bin/
 COPY rsyncd.service /etc/service/rsyncd/run
 
 VOLUME ["/var/tmp/pg_archive"]
