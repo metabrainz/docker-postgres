@@ -36,6 +36,6 @@ chpst -u postgres:postgres \
     /usr/lib/postgresql/9.5/bin/initdb \
         --data-checksums \
         --encoding utf8 \
-        --locale en_US.UTF8 \
+        --no-locale \
         --username postgres \
         $PGDATA
