@@ -2,6 +2,8 @@
 
 set -e
 
+apt-get update
+
 BUILD_DEPS=" \
     gcc \
     git \
@@ -10,11 +12,11 @@ BUILD_DEPS=" \
     make \
     postgresql-server-dev-9.5"
 
+ICU_PKG=$(apt-cache search --names-only '^libicu5[0-9]$' | awk '{print $1}')
+
 RUN_DEPS=" \
     ca-certificates \
-    libicu55"
-
-apt-get update
+    $ICU_PKG"
 
 apt-get install \
     --no-install-recommends \
