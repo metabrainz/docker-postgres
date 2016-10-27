@@ -3,16 +3,16 @@
 set -e
 
 BUILD_DEPS=" \
-gcc \
-git \
-libc6-dev \
-libicu-dev \
-make \
-postgresql-server-dev-9.5"
+    gcc \
+    git \
+    libc6-dev \
+    libicu-dev \
+    make \
+    postgresql-server-dev-9.5"
 
 RUN_DEPS=" \
-ca-certificates \
-libicu55"
+    ca-certificates \
+    libicu55"
 
 apt-get update
 
