@@ -6,6 +6,7 @@ RUN_DEPS=" \
     locales \
     postgresql-9.5 \
     postgresql-contrib-9.5 \
+    postgresql-plperl-9.5 \
     rsync"
 
 apt-get update
