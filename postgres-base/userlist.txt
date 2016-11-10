@@ -1,2 +1,2 @@
 "musicbrainz" ""
-"caa_redirect" ""
+"caa_redirect" "caa_redirect"
