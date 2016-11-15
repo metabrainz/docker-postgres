@@ -1,2 +1,6 @@
 "musicbrainz" ""
 "caa_redirect" "caa_redirect"
+"critiquebrainz" "critiquebrainz"
+"sentry" "sentry"
+"mbspotify" "mbspotify"
+"metabrainz" "metabrainz"
