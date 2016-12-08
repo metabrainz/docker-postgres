@@ -4,3 +4,4 @@
 "metabrainz" "metabrainz"
 "musicbrainz" ""
 "sentry" "sentry"
+"telegraf" ""

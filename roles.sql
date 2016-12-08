@@ -8,5 +8,6 @@ CREATE ROLE metabrainz WITH PASSWORD 'metabrainz';
 CREATE ROLE musicbrainz_ro;
 CREATE ROLE replication WITH LOGIN REPLICATION;
 CREATE ROLE sentry WITH PASSWORD 'sentry';
+CREATE ROLE telegraf WITH LOGIN;
 
 COMMIT;
