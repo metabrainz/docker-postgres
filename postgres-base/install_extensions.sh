@@ -41,7 +41,7 @@ make_extension() {
 
 make_extension 'metabrainz' 'dbmirror' 'e050578'
 make_extension 'metabrainz' 'postgresql-musicbrainz-collate' '958142e'
-make_extension 'metabrainz' 'postgresql-musicbrainz-unaccent' 'a32ca6a'
+make_extension 'metabrainz' 'postgresql-musicbrainz-unaccent' 'b727896'
 make_extension 'omniti-labs' 'pg_amqp' '1290d7c'
 
 apt-get purge -y $BUILD_DEPS
