@@ -24,4 +24,9 @@ GRANT SELECT ON ALL TABLES IN SCHEMA musicbrainz TO caa_redirect;
 GRANT USAGE ON SCHEMA cover_art_archive TO caa_redirect;
 GRANT SELECT ON ALL TABLES IN SCHEMA cover_art_archive TO caa_redirect;
 
+-- SIR
+GRANT CONNECT ON DATABASE musicbrainz_db TO sir;
+GRANT USAGE ON SCHEMA musicbrainz TO sir;
+GRANT SELECT ON ALL TABLES IN SCHEMA musicbrainz TO sir;
+
 COMMIT;

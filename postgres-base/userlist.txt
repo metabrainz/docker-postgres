@@ -5,3 +5,4 @@
 "musicbrainz" ""
 "sentry" "sentry"
 "telegraf" ""
+"sir" "sir"
