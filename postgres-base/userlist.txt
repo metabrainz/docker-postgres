@@ -2,6 +2,7 @@
 "critiquebrainz" "critiquebrainz"
 "mbspotify" "mbspotify"
 "metabrainz" "metabrainz"
+"metabrainz_test" "metabrainz_test"
 "musicbrainz" ""
 "sentry" "sentry"
 "telegraf" ""
