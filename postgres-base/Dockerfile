@@ -1,4 +1,4 @@
-FROM metabrainz/consul-template-base
+FROM metabrainz/consul-template-base:0.18.2
 
 # Pgbouncer and postgres are set up in the same container, because there is a
 # 1:1 relationship between them which can't easily scale with swarm otherwise.
@@ -17,7 +17,11 @@ RUN install_extensions.sh
 COPY pgbouncer.ini userlist.txt /etc/pgbouncer/
 COPY pgbouncer.service /etc/service/pgbouncer/run
 COPY postgres.service /etc/service/postgres/run
-RUN chmod 755 /etc/service/pgbouncer/run /etc/service/postgres/run
+COPY run-postgres /usr/local/bin/
+RUN chmod 755 \
+    /etc/service/pgbouncer/run \
+    /etc/service/postgres/run \
+    /usr/local/bin/run-postgres
 
 VOLUME ["/var/lib/postgresql/data"]
 
