@@ -1,4 +1,4 @@
-FROM metabrainz/postgres-base
+FROM metabrainz/postgres-base:2017-q2
 
 # These services should not be started until data is copied from the master.
 RUN touch \
