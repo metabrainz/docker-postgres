@@ -1,10 +1,8 @@
+{{- $config := printf "docker-server-configs/services/%s.json/" (or (env "POSTGRES_SERVICE_NAME") "postgres-master") -}}
 [databases]
-musicbrainz_db = host=127.0.0.1 port=5432 dbname=musicbrainz_db
-metabrainz_db = host=127.0.0.1 port=5432 dbname=metabrainz_db
-metabrainz_test_db = host=127.0.0.1 port=5432 dbname=metabrainz_test_db
-mbspotify_db = host=127.0.0.1 port=5432 dbname=mbspotify_db
-critiquebrainz_db = host=127.0.0.1 port=5432 dbname=critiquebrainz_db
-sentry_db = host=127.0.0.1 port=5432 dbname=sentry_db
+{{- range $name, $db := (tree (print $config "databases") | explode) }}
+{{ $name }} = host=127.0.0.1 port=5432 dbname={{ $name }}
+{{- end }}
 
 [pgbouncer]
 pidfile=/tmp/pgbouncer.pid

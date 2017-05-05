@@ -14,7 +14,9 @@ RUN install_postgres.sh
 COPY install_extensions.sh /usr/local/bin/
 RUN install_extensions.sh
 
-COPY pgbouncer.ini userlist.txt /etc/pgbouncer/
+COPY consul-template-pgbouncer.conf /etc/
+COPY pgbouncer.ini.ctmpl userlist.txt.ctmpl /etc/pgbouncer/
+COPY pg_hba.conf.ctmpl /etc/postgresql/
 COPY pgbouncer.service /etc/service/pgbouncer/run
 COPY postgres.service /etc/service/postgres/run
 COPY run-postgres /usr/local/bin/

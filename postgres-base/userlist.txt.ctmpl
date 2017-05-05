@@ -1,0 +1,4 @@
+{{- $config := printf "docker-server-configs/services/%s.json/" (or (env "POSTGRES_SERVICE_NAME") "postgres-master") -}}
+{{- range $name, $user := (tree (print $config "users") | explode) }}
+"{{ $name }}" "{{ $user.password }}"
+{{- end }}
