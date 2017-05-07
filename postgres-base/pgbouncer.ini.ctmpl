@@ -1,7 +1,9 @@
 {{- $config := printf "docker-server-configs/services/%s.json/" (or (env "POSTGRES_SERVICE_NAME") "postgres-master") -}}
 [databases]
 {{- range $name, $db := (tree (print $config "databases") | explode) }}
+{{- if (plugin "db-exists" $name) }}
 {{ $name }} = host=127.0.0.1 port=5432 dbname={{ $name }}
+{{- end }}
 {{- end }}
 
 [pgbouncer]

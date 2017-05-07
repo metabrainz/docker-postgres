@@ -1,0 +1,5 @@
+#!/bin/sh
+
+CMD="psql -tAc "'"'"SELECT 1 FROM pg_database WHERE datname='$1'"'"'
+RET=$( su - postgres -c "$CMD" )
+printf "$RET"

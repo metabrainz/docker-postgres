@@ -19,10 +19,11 @@ COPY pgbouncer.ini.ctmpl userlist.txt.ctmpl /etc/pgbouncer/
 COPY pg_hba.conf.ctmpl /etc/postgresql/
 COPY pgbouncer.service /etc/service/pgbouncer/run
 COPY postgres.service /etc/service/postgres/run
-COPY run-postgres /usr/local/bin/
+COPY db-exists run-postgres /usr/local/bin/
 RUN chmod 755 \
     /etc/service/pgbouncer/run \
     /etc/service/postgres/run \
+    /usr/local/bin/db-exists \
     /usr/local/bin/run-postgres
 
 VOLUME ["/var/lib/postgresql/data"]
