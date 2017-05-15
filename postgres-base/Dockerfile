@@ -1,4 +1,4 @@
-FROM metabrainz/consul-template-base:0.18.2
+FROM metabrainz/consul-template-base:0.18
 
 # Pgbouncer and postgres are set up in the same container, because there is a
 # 1:1 relationship between them which can't easily scale with swarm otherwise.
