@@ -1,8 +1,8 @@
-FROM metabrainz/postgres-base
+FROM metabrainz/postgres-base:2017-q2
 
 COPY \
-    consul-template.conf \
+    consul-template-postgres.conf \
     pg_archive_command.sh.ctmpl \
     rsync_password_file.ctmpl \
     /etc/
-COPY pg_hba.conf postgresql.conf.ctmpl /etc/postgresql/
+COPY postgresql.conf.ctmpl /etc/postgresql/

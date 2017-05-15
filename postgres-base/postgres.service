@@ -1,13 +1,3 @@
 #!/bin/sh
 
-sv start consul-template || exit 1
-
-. /etc/consul_template_helpers.sh
-
-wait_for_file '/etc/postgresql/postgresql.conf'
-
-exec chpst -u postgres:postgres \
-    /usr/lib/postgresql/9.5/bin/postgres \
-        -D /var/lib/postgresql/data \
-        -c config_file=/etc/postgresql/postgresql.conf \
-        -c hba_file=/etc/postgresql/pg_hba.conf
+exec run-consul-template -config /etc/consul-template-postgres.conf

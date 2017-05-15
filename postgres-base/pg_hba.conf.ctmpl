@@ -1,0 +1,8 @@
+{{- $config := printf "docker-server-configs/services/%s.json/" (or (env "POSTGRES_SERVICE_NAME") "postgres-master") -}}
+local all all trust
+host all all 127.0.0.1/32 trust
+host all all ::1/128 trust
+host template1 postgres samenet trust
+{{- range $name, $db := (tree (print $config "databases") | explode) }}
+host {{ $name }} {{ $db.allowed_users }} samenet trust
+{{- end }}
