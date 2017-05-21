@@ -10,7 +10,7 @@ BUILD_DEPS=" \
     libc6-dev \
     libicu-dev \
     make \
-    postgresql-server-dev-9.5"
+    postgresql-server-dev-9.6"
 
 ICU_PKG=$(apt-cache search --names-only '^libicu5[0-9]$' | awk '{print $1}')
 
