@@ -3,6 +3,7 @@ BEGIN;
 
 CREATE ROLE caa_redirect WITH PASSWORD 'caa_redirect';
 CREATE ROLE critiquebrainz WITH PASSWORD 'critiquebrainz';
+CREATE ROLE listenbrainz WITH PASSWORD 'listenbrainz';
 CREATE ROLE mbspotify WITH PASSWORD 'mbspotify';
 CREATE ROLE metabrainz WITH PASSWORD 'metabrainz';
 CREATE ROLE metabrainz_test WITH PASSWORD 'metabrainz_test';
