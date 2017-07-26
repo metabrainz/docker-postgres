@@ -1,14 +1,15 @@
 \set ON_ERROR_STOP 1
 BEGIN;
 
-CREATE ROLE caa_redirect WITH PASSWORD 'caa_redirect';
-CREATE ROLE critiquebrainz WITH PASSWORD 'critiquebrainz';
-CREATE ROLE mbspotify WITH PASSWORD 'mbspotify';
-CREATE ROLE metabrainz WITH PASSWORD 'metabrainz';
-CREATE ROLE metabrainz_test WITH PASSWORD 'metabrainz_test';
+CREATE ROLE caa_redirect WITH LOGIN PASSWORD 'caa_redirect';
+CREATE ROLE critiquebrainz WITH LOGIN PASSWORD 'critiquebrainz';
+CREATE ROLE listenbrainz WITH LOGIN PASSWORD 'listenbrainz';
+CREATE ROLE mbspotify WITH LOGIN PASSWORD 'mbspotify';
+CREATE ROLE metabrainz WITH LOGIN PASSWORD 'metabrainz';
+CREATE ROLE metabrainz_test WITH LOGIN PASSWORD 'metabrainz_test';
 CREATE ROLE musicbrainz_ro;
 CREATE ROLE replication WITH LOGIN REPLICATION;
-CREATE ROLE sentry WITH PASSWORD 'sentry';
+CREATE ROLE sentry WITH LOGIN PASSWORD 'sentry';
 CREATE ROLE telegraf WITH LOGIN;
 CREATE ROLE sir WITH LOGIN PASSWORD 'sir';
 
