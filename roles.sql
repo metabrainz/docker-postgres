@@ -14,6 +14,7 @@ CREATE ROLE telegraf WITH LOGIN;
 CREATE ROLE sir WITH LOGIN PASSWORD 'sir';
 
 ALTER ROLE musicbrainz_ro SET search_path TO musicbrainz, public;
+ALTER ROLE musicbrainz_ro SET default_transaction_read_only TO on;
 ALTER ROLE sir SET search_path TO musicbrainz, public;
 
 COMMIT;
