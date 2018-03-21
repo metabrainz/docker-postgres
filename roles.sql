@@ -7,7 +7,7 @@ CREATE ROLE listenbrainz WITH LOGIN PASSWORD 'listenbrainz';
 CREATE ROLE mbspotify WITH LOGIN PASSWORD 'mbspotify';
 CREATE ROLE metabrainz WITH LOGIN PASSWORD 'metabrainz';
 CREATE ROLE metabrainz_test WITH LOGIN PASSWORD 'metabrainz_test';
-CREATE ROLE musicbrainz_ro;
+CREATE ROLE musicbrainz_ro WITH LOGIN;
 CREATE ROLE replication WITH LOGIN REPLICATION;
 CREATE ROLE sentry WITH LOGIN PASSWORD 'sentry';
 CREATE ROLE telegraf WITH LOGIN;
