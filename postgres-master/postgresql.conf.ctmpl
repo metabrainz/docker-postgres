@@ -2,6 +2,7 @@
 archive_command = 'pg_archive_command.sh %p %f'
 archive_mode = 'on'
 autovacuum = 'on'
+autovacuum_vacuum_scale_factor = '0.1'
 data_directory = '/var/lib/postgresql/data'
 datestyle = 'iso, mdy'
 default_statistics_target = '300'
