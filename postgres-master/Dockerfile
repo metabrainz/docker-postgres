@@ -1,4 +1,4 @@
-FROM metabrainz/postgres-base:9.6
+FROM metabrainz/postgres-base:10
 
 COPY \
     consul-template-postgres.conf \
