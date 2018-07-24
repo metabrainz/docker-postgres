@@ -10,7 +10,8 @@ RUN_DEPS=" \
     rsync"
 
 add-apt-repository 'deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main'
-wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
+apt-key add /tmp/ACCC4CF8.asc
+rm /tmp/ACCC4CF8.asc
 apt-get update
 
 apt-get install \

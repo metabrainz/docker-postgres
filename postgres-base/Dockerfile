@@ -8,6 +8,8 @@ ARG DEBIAN_FRONTEND=noninteractive
 COPY install_pgbouncer.sh /usr/local/bin/
 RUN install_pgbouncer.sh
 
+COPY ACCC4CF8.asc /tmp/
+
 COPY install_postgres.sh /usr/local/bin/
 RUN install_postgres.sh
 
