@@ -4,6 +4,7 @@ set -e
 
 RUN_DEPS=" \
     locales \
+    pgbouncer \
     postgresql-12 \
     rsync"
 
