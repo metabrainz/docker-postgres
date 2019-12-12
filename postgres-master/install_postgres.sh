@@ -12,6 +12,10 @@ add-apt-repository 'deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg mai
 apt-key add /tmp/ACCC4CF8.asc
 rm /tmp/ACCC4CF8.asc
 apt-get update
+apt-get upgrade \
+    -o Dpkg::Options::='--force-confdef' \
+    -o Dpkg::Options::='--force-confold' \
+    -y
 
 apt-get install \
     --no-install-recommends \
