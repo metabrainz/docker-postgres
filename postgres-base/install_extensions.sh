@@ -11,7 +11,7 @@ BUILD_DEPS=" \
     libicu-dev \
     make \
     pkg-config \
-    postgresql-server-dev-9.6"
+    postgresql-server-dev-12"
 
 ICU_PKG=$(apt-cache search --names-only '^libicu5[0-9]$' | awk '{print $1}')
 
@@ -40,10 +40,8 @@ make_extension() {
     rm -rf $REPO
 }
 
-make_extension 'metabrainz' 'dbmirror' 'e050578'
-make_extension 'metabrainz' 'postgresql-musicbrainz-collate' '6c350bc'
-make_extension 'metabrainz' 'postgresql-musicbrainz-unaccent' 'b727896'
-make_extension 'omniti-labs' 'pg_amqp' '1290d7c'
+make_extension 'metabrainz' 'dbmirror' '6fdaf3c'
+make_extension 'omniti-labs' 'pg_amqp' '240d477'
 
 apt-get purge -y $BUILD_DEPS
 apt-get autoremove -y

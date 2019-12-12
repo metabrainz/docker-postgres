@@ -14,6 +14,6 @@ if [ -e "$ARCHIVE_FILE" ]; then
 else
     # "The command will be asked for file names that are not present in the
     # archive; it must return nonzero when so asked."
-    # https://www.postgresql.org/docs/9.6/static/archive-recovery-settings.html
+    # https://www.postgresql.org/docs/12/continuous-archiving.html#BACKUP-PITR-RECOVERY
     exit 1
 fi
