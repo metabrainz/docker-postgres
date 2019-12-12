@@ -2,7 +2,7 @@
 
 all: build
 
-IMAGE_NAME:=2017-q2
+IMAGE_NAME:=9.6
 
 build:
 	docker build -t metabrainz/postgres-base:$(IMAGE_NAME) postgres-base/
