@@ -10,7 +10,6 @@ BUILD_DEPS=" \
     libc6-dev \
     libicu-dev \
     make \
-    pkg-config \
     postgresql-server-dev-9.6"
 
 ICU_PKG=$(apt-cache search --names-only '^libicu5[0-9]$' | awk '{print $1}')
@@ -41,7 +40,7 @@ make_extension() {
 }
 
 make_extension 'metabrainz' 'dbmirror' 'e050578'
-make_extension 'metabrainz' 'postgresql-musicbrainz-collate' 'TBD'
+make_extension 'metabrainz' 'postgresql-musicbrainz-collate' '958142e'
 make_extension 'metabrainz' 'postgresql-musicbrainz-unaccent' 'b727896'
 make_extension 'omniti-labs' 'pg_amqp' '1290d7c'
 
