@@ -2,6 +2,8 @@
 archive_mode = 'off'
 autovacuum = 'on'
 autovacuum_vacuum_scale_factor = '0.1'
+checkpoint_completion_target = '{{keyOrDefault (print $config "checkpoint_completion_target") "0.5"}}'
+checkpoint_timeout = '{{keyOrDefault (print $config "checkpoint_timeout") "5min"}}'
 data_directory = '/var/lib/postgresql/data'
 datestyle = 'iso, mdy'
 default_statistics_target = '300'
