@@ -16,28 +16,6 @@ services:
     volumes:
       - postgres-master-data:/var/lib/postgresql/data
 
-  postgres-slave:
-    depends_on:
-      - postgres-master
-    environment:
-      - "constraint:type==db"
-      - "constraint:subtype==slave"
-      - SERVICE_5432_NAME=postgres-slave
-      - SERVICE_6899_NAME=pgbouncer-slave
-      - SERVICE_TAGS=beta,prod
-    ports:
-      - "5432"
-      - "6899"
-    image: metabrainz/postgres-slave
-    restart: always
-    volumes:
-      - postgres-slave-archives:/var/tmp/pg_archive
-      - postgres-slave-data:/var/lib/postgresql/data
-
 volumes:
   postgres-master-data:
-    driver: local
-  postgres-slave-archives:
-    driver: local
-  postgres-slave-data:
     driver: local

@@ -1,8 +1,0 @@
-archive_cleanup_command = 'pg_archivecleanup -d /var/tmp/pg_archive %r 2>>/var/lib/postgresql/data/cleanup.log'
-{{- if service "postgres-master"}}
-{{- with index (service "postgres-master") 0}}
-primary_conninfo = 'host={{.Address}} port={{.Port}} user=replication'
-{{- end}}
-{{- end}}
-restore_command = 'pg_restore_command.sh %f %p'
-standby_mode = 'on'
